@@ -5,11 +5,43 @@
   //
   // TODO: build the swim command fetcher here
   //
+  const fetchRandomSwim = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      //  data: input,
+      success: (data) => {
+        console.log(data);
+        SwimTeam.move(data);
+      },
+      error: (status) => {
+        console.log('Failed Random Fetch')
+      }
+    })
+    setTimeout(fetchRandomSwim, 3000);
+  }
+
+   fetchRandomSwim();
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
+
+  // const fetchBGimage = () => {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: serverUrl + '/background.jpg',
+  //     success: (data) => {
+  //       console.log('Success background!');
+  //     },
+  //     error: () => {
+  //       console.log('Failed background');
+  //     }
+  //   })
+  // }
+
+  // fetchBGimage();
 
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
@@ -17,7 +49,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
